@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BTC Signal Panel</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">BTCUSDT 永续 · Binance USD-M</p>
+          <h1>AI 实时信号面板</h1>
+        </div>
+        <div class="status">
+          <span id="aiStatus">AI 检查中</span>
+          <span id="refreshStatus">等待刷新</span>
+        </div>
+      </header>
+
+      <section class="market-strip">
+        <div>
+          <span>当前价格</span>
+          <strong id="currentPrice">--</strong>
+        </div>
+        <div>
+          <span>资金费率</span>
+          <strong id="fundingRate">--</strong>
+        </div>
+        <div>
+          <span>持仓量</span>
+          <strong id="openInterest">--</strong>
+        </div>
+        <div>
+          <span>下次刷新</span>
+          <strong id="countdown">60s</strong>
+        </div>
+      </section>
+
+      <section class="refresh-control" aria-label="刷新间隔设置">
+        <div class="refresh-copy">
+          <span>刷新间隔</span>
+          <strong id="refreshSecondsLabel">60 秒</strong>
+        </div>
+        <input id="refreshSlider" type="range" min="1" max="60" value="60" step="1" />
+        <div class="range-labels">
+          <span>1 秒</span>
+          <span>60 秒</span>
+        </div>
+      </section>
+
+      <section id="errorBox" class="error-box hidden"></section>
+
+      <section class="grid">
+        <article class="signal-card">
+          <div class="signal-head">
+            <span id="biasPill" class="pill neutral">观望</span>
+            <div>
+              <span>置信度</span>
+              <strong id="confidence">--</strong>
+            </div>
+          </div>
+          <p id="reason" class="reason">等待首次行情刷新。</p>
+          <dl class="plan-list">
+            <div>
+              <dt>入场条件</dt>
+              <dd id="entryCondition">--</dd>
+            </div>
+            <div>
+              <dt>失效条件</dt>
+              <dd id="invalidIf">--</dd>
+            </div>
+            <div>
+              <dt>止损参考</dt>
+              <dd id="stopLoss">--</dd>
+            </div>
+            <div>
+              <dt>止盈参考</dt>
+              <dd id="takeProfit">--</dd>
+            </div>
+          </dl>
+        </article>
+
+        <aside class="side-panel">
+          <h2>盘口 / 成交流</h2>
+          <div class="metric-row">
+            <span>盘口倾斜</span>
+            <strong id="bookImbalance">--</strong>
+          </div>
+          <div class="metric-row">
+            <span>成交 Delta</span>
+            <strong id="tradeDelta">--</strong>
+          </div>
+          <div class="metric-row">
+            <span>买一 / 卖一</span>
+            <strong id="bestBidAsk">--</strong>
+          </div>
+          <h2>风险提示</h2>
+          <ul id="riskList" class="risk-list">
+            <li>等待数据。</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="intervals">
+        <h2>多周期结构</h2>
+        <div id="intervalGrid" class="interval-grid"></div>
+      </section>
+
+      <section class="log-section">
+        <h2>最近信号日志</h2>
+        <div id="signalLog" class="signal-log"></div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
